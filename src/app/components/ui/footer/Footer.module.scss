@@ -1,0 +1,14 @@
+@import "~/src/app/styles/utils/colors";
+@import "~/src/app/styles/utils/mixins";
+
+
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $tertiary-color;
+    color: $quaternary-color;
+    font-size: 0.75rem;
+    height: 2.13rem;
+    padding: 1rem
+}

@@ -1,0 +1,66 @@
+
+@import "~/src/app/styles/utils/colors";
+@import "~/src/app/styles/utils/mixins";
+
+
+
+
+.topMenu{
+    height: 3rem;
+    background-color: $primary-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    @include medium{
+        height: 6.3rem;
+    padding: 0.5rem 4.5rem;
+
+    }
+
+
+    .topMenu_title{
+        color: $secondary-color;
+        font-size: 2rem;
+        font-weight: 600;
+        @include medium{
+            font-size: 2.5rem;
+
+        }
+
+    }
+
+    .topMenu_title--secondary{
+        color: $secondary-color;
+        font-size: 1rem;
+        font-weight: 300;
+        align-self: end;
+        margin-bottom: 0.7rem;
+
+        @include medium{
+            font-size: 1.5rem;
+
+        }
+    }
+}
+
+.topMenu_btnCart{
+    background-color: $secondary-color;
+    color: $quaternary-color;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    height: 1.62rem;
+    width: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    @include medium{
+        font-size: 1.12rem;
+        height: 2.81rem;
+        width: 5.63rem;
+    }
+}
+
