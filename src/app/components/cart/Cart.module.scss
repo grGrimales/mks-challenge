@@ -1,0 +1,26 @@
+@import "~/src/app/styles/utils/colors";
+@import "~/src/app/styles/utils/mixins";
+
+.content {
+  box-shadow: -5px 0px 6px 0px #00000021;
+  @apply fixed p-5 right-0 top-0 w-[486px] h-screen bg-colorPrimary z-20 transform transition-all duration-300;
+}
+
+
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    .header_title{
+      font-weight: 700;
+      font-size: 1.69rem;
+      color: $secondary-color;
+  }
+  
+    .header_close{
+
+    }
+}
