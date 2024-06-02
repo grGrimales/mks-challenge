@@ -1,6 +1,5 @@
 'use client';
 
-
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { Product } from '@/interfaces';
@@ -10,6 +9,6 @@ const fetchProducts = async (): Promise<Product[]> => {
   return data.products; 
 };
 
-export const getAllProduct = () => {
+export const useProducts = () => {
   return useQuery('products', fetchProducts);
 };

@@ -5,10 +5,19 @@ import styles from "./Cart.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { QuantitySelector } from "../ui";
+import { useEffect, useState } from "react";
 
 export const Cart = () => {
   const isSideMenuOpen = useCartStore((state) => state.isSideMenuCartOpen);
   const closeMenu = useCartStore((state) => state.closeSideMenuCart);
+  const productsInCart = useCartStore((state) => state.cart);
+  const { itemsInCart, total } = useCartStore((state) => state.getSummaryInformation());
+
+
+
+  const [loaded, setLoaded] = useState(false);
+
+
 
   const formattedPrice = (price: number): number => {
     return Math.round(price);
@@ -17,6 +26,15 @@ export const Cart = () => {
   const updateProductQuantity = useCartStore(
     (state) => state.updateProductQuantity
   );
+
+  const removeProductFromCart = useCartStore((state) => state.removeProductFromCart);
+
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
+  if (!loaded) <p>Loading</p>;
 
   return (
     <div>
@@ -37,32 +55,12 @@ export const Cart = () => {
           </div>
 
           <div className={styles.summary}>
-          <div className={styles.summary_item}>
-              <Link href={`/product/`} className="align-self-center">
-                <Image
-                  src={`https://mks-sistemas.nyc3.digitaloceanspaces.com/products/airpods.webp`}
-                  alt={"Product Image"}
-                  className="w-40 md:w-11 object-cover object-center"
-                  width={100}
-                  height={100}
-                />
-              </Link>
-              <div className="flex flex-col md:flex-row md:items-center justify-between flex-1">
-                <Link className={styles.summary_title} href={`/product/`}>
-                  Apple Watch Series 4 GPS
-                </Link>
-                <div className="flex justify-between md:gap-4 items-center mt-4 md:mt-0">
-                  <QuantitySelector quantity={1} onQuantityChanged={() => {}} />
-                  <span className={styles.summary_price}>R$1222</span>
-                </div>
-              </div>
-              <span className={styles.closeButton}>X</span>
-            </div>
 
-            <div className={styles.summary_item}>
-              <Link href={`/product/`} className="align-self-center">
+          {productsInCart.map((product) => (
+          <div className={styles.summary_item} key={product.id}>
+              <Link href={`/product/${product.id}`} className="align-self-center">
                 <Image
-                  src={`https://mks-sistemas.nyc3.digitaloceanspaces.com/products/airpods.webp`}
+                  src={product.photo}
                   alt={"Product Image"}
                   className="w-40 md:w-11 object-cover object-center"
                   width={100}
@@ -71,21 +69,24 @@ export const Cart = () => {
               </Link>
               <div className="flex flex-col md:flex-row md:items-center justify-between flex-1">
                 <Link className={styles.summary_title} href={`/product/`}>
-                  Apple Watch Series 4 GPS
+                 {product.name}
                 </Link>
                 <div className="flex justify-between md:gap-4 items-center mt-4 md:mt-0">
-                  <QuantitySelector quantity={1} onQuantityChanged={() => {}} />
-                  <span className={styles.summary_price}>R$1222</span>
+                  <QuantitySelector quantity={product.quantity} onQuantityChanged={(value) => updateProductQuantity(product, value)} />
+                  <span className={styles.summary_price}>R${formattedPrice(product.price)}</span>
                 </div>
               </div>
-              <span className={styles.closeButton}>X</span>
+              <span onClick={() => removeProductFromCart(product)} className={styles.closeButton}>X</span>
             </div>
+              ))}
+
+        
           </div>
 
           <div className={styles.footer}>
             <div className={styles.footer_total}>
               <span>Total:</span>
-              <span>R$ 1222</span>
+              <span>R$ {formattedPrice(total)}</span>
             </div>
             <button className={styles.footer_checkout}>Finalizar Compra</button>
           </div>

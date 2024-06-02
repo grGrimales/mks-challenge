@@ -15,7 +15,6 @@ interface Props {
 export const ProductGridItem = ({ product }: Props) => {
 
   const addProductToCart = useCartStore(state => state.addProductToCart);
-  const cart = useCartStore(state => state.cart);
 
   const formattedPrice = Math.round(product.price);
   const [quantity, setQuantity] = useState<number>(1);
@@ -23,7 +22,6 @@ export const ProductGridItem = ({ product }: Props) => {
 
   const addToCart = () => {
 
-    console.log('add to cart')
 
   const cartProduct: CartProduct ={
       id: product.id,
@@ -36,8 +34,7 @@ export const ProductGridItem = ({ product }: Props) => {
 
     }
     addProductToCart(cartProduct);
-    console.log(cartProduct)
-    console.log(cart)
+   
     setQuantity(1);
 
   }

@@ -1,10 +1,10 @@
 'use client';
-import { getAllProduct } from "@/actions/product/get-all-product";
 import { ProductGrid } from "../components/products/product-grid/ProductGrid";
+import { useProducts } from "@/hooks/product/useProducts";
 
 export default function Home() {
 
-  const { data: products, isLoading, error } = getAllProduct();
+  const { data: products, isLoading, error } = useProducts();
 
 
   if (isLoading) return <div>Loading...</div>;
