@@ -10,3 +10,13 @@ export interface Product {
   }
   
 
+  export interface CartProduct{
+    id: string;
+    name: string;
+    description: string;
+    brand: string;
+    price: number;
+    photo: string;
+    quantity: number;
+  }
+

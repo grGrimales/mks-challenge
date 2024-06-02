@@ -13,3 +13,18 @@
         opacity: 1;
     }
 }
+
+.cardTitle {
+    font-size: 1rem;
+    font-weight: 400;
+    color: $primary-text-color;
+  }
+  
+  .cardPrice {
+    font-size: 0.94rem;
+    font-weight: 700;
+    color: $secondary-color;
+    background-color: $primary-background-color;
+  
+    @apply font-bold py-1 px-2 rounded;
+  }

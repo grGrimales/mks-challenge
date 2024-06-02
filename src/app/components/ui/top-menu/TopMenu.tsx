@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 import { titleFont } from "@/config/fonts";
 import Image from "next/image";
 import { useState } from "react";
-import { useUIStore } from "@/store";
+import { useCartStore } from "@/store";
 
 export const TopMenu = () => {
   const [count, setCount] = useState(0);
 
-  const openSideMenuCart = useUIStore((state) => state.openSideMenuCart);
+  const openSideMenuCart = useCartStore((state) => state.openSideMenuCart);
 
 
 

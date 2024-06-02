@@ -8,20 +8,7 @@
   @apply rounded-md  overflow-hidden flex flex-col justify-between hover:opacity-95 transition-opacity;
 }
 
-.cardTitle {
-  font-size: 1rem;
-  font-weight: 400;
-  color: $primary-text-color;
-}
 
-.cardPrice {
-  font-size: 0.94rem;
-  font-weight: 700;
-  color: $secondary-color;
-  background-color: $primary-background-color;
-
-  @apply font-bold py-1 px-2 rounded;
-}
 
 .cardDescription {
   font-size: 0.63rem;
@@ -52,6 +39,8 @@
     font-size: 0.88rem;
     font-weight: 600;
     letter-spacing: 0.35px;
+    font-family: "Montserrat", sans-serif;
+
     &:hover {
       background-color: #2563eb;
     }

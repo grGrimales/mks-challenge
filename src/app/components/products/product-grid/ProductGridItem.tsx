@@ -2,19 +2,50 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Product } from "@/interfaces";
+import { CartProduct, Product } from "@/interfaces";
 
 import styles from "./ProductGridItem.module.scss";
+import { useCartStore } from "@/store";
+import { useState } from "react";
 
 interface Props {
   product: Product;
 }
 
 export const ProductGridItem = ({ product }: Props) => {
+
+  const addProductToCart = useCartStore(state => state.addProductToCart);
+  const cart = useCartStore(state => state.cart);
+
   const formattedPrice = Math.round(product.price);
+  const [quantity, setQuantity] = useState<number>(1);
+
+
+  const addToCart = () => {
+
+    console.log('add to cart')
+
+  const cartProduct: CartProduct ={
+      id: product.id,
+      name: product.name,
+      description: product.description,
+      brand: product.brand,
+      price: product.price,
+      quantity: quantity,
+      photo: product.photo,
+
+    }
+    addProductToCart(cartProduct);
+    console.log(cartProduct)
+    console.log(cart)
+    setQuantity(1);
+
+  }
+
+
   return (
     <div className={styles.card}>
-      <div className="div">
+      <div>
         <Link href={`/product/${product.id}`}>
           <Image
             src={`${product.photo}`}
@@ -28,16 +59,16 @@ export const ProductGridItem = ({ product }: Props) => {
 
       <div className="flex flex-col justify-between flex-1  p-3">
         <div className="flex justify-between items-center">
-          <Link className={styles.cardTitle} href={`/product/${product.id}`}>
+          <Link className={'cardTitle'} href={`/product/${product.id}`}>
             {product.name}
           </Link>
-          <span className={styles.cardPrice}>R${formattedPrice}</span>
+          <span className={'cardPrice'}>R${formattedPrice}</span>
         </div>
 
         <p className={styles.cardDescription}>{product.description}</p>
       </div>
-      <div className={styles.buttonContainer}>
-        <button className={styles.button}>
+      <div className={styles.buttonContainer}  onClick={() => addToCart()}>
+        <button className={styles.button} >
           <Image
             src="/images/icons/shopping-bag.png"
             alt="cart"
