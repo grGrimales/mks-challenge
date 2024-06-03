@@ -11,8 +11,7 @@ export const Cart = () => {
   const isSideMenuOpen = useCartStore((state) => state.isSideMenuCartOpen);
   const closeMenu = useCartStore((state) => state.closeSideMenuCart);
   const productsInCart = useCartStore((state) => state.cart);
- 
-  const { total } = useCartStore((state) =>
+  const { itemsInCart, total } = useCartStore((state) =>
     state.getSummaryInformation()
   );
 
@@ -34,25 +33,7 @@ export const Cart = () => {
     setLoaded(true);
   }, []);
 
-
   if (!loaded) <Loading />;
-
-  if (productsInCart.length === 0 && loaded)
-    return (
-      <div className="flex justify-center items-center h-[400px]">
-        <div className="flex flex-col items-center">
-          <Image
-            src="/images/icons/cart.png"
-            alt="cart"
-            width={25}
-            height={25}
-          />
-          <h1 className="text-3xl font-semibold text-white">
-            Seu carrinho está vazio
-          </h1>
-        </div>
-      </div>
-    );
 
   return (
     <div>
@@ -70,7 +51,22 @@ export const Cart = () => {
               <span>x</span>
             </button>
           </div>
-         
+          {productsInCart.length === 0 && loaded ? (
+            <div className="flex justify-center items-center h-[400px]">
+              <div className="flex flex-col items-center">
+                <Image
+                  src="/images/icons/cart.png"
+                  alt="cart"
+                  width={25}
+                  height={25}
+                />
+                <h1 className="text-3xl font-semibold text-white">
+                  Seu carrinho está vazio
+                </h1>
+              </div>
+            </div>
+          ) : (
+            <>
               <div className={styles.summary}>
                 {productsInCart?.map((product) => (
                   <div
@@ -127,7 +123,8 @@ export const Cart = () => {
                   Finalizar Compra
                 </button>
               </div>
-         
+            </>
+          )}
         </div>
       </div>
     </div>
