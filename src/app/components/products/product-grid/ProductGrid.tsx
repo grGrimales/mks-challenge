@@ -7,7 +7,7 @@ interface Props {
 }
 
 
-export const ProductGrid = ( { products }: Props ) => {
+export const ProductGrid: React.FC<Props>  = ( { products } ) => {
 
    
   return (

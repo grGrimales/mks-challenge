@@ -14,6 +14,7 @@ const mockProducts: Product[] = [
     brand: 'Brand 1',
     cretedAt: '2021-09-01',
     updatepAt: '2021-09-01',
+
   },
   {
     id: '2',
@@ -24,20 +25,20 @@ const mockProducts: Product[] = [
     brand: 'Brand 2',
     cretedAt: '2021-09-01',
     updatepAt: '2021-09-01',
+
   },
 ];
 
 describe('ProductGrid', () => {
   it('renders the products correctly', () => {
-    const { getByText, getByAltText } = render(<ProductGrid products={mockProducts} />);
 
-    // Check if product names are rendered
-  expect(getByText('Product 1')).toBeInTheDocument();  
-  //  expect(getByText('Product 1')).toBeInTheDocument();
-  //  expect(getByText('Product 2')).toBeInTheDocument();
+    console.log('mockProducts', )
+     const { getByText, getByAltText } = render(<ProductGrid products={mockProducts} />);
 
-    // Check if product images are rendered
-  //  expect(getByAltText('Product 1')).toBeInTheDocument();
-  //  expect(getByAltText('Product 2')).toBeInTheDocument();
+    expect(getByText('Product 1')).toBeInTheDocument();
+
+     expect(getByAltText('Product 1')).toBeInTheDocument();
+
+     expect(getByText('R$100')).toBeInTheDocument();
   });
 });

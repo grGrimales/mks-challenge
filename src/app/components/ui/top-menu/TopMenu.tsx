@@ -2,7 +2,6 @@
 import Link from "next/link";
 import styles from "./TopMenu.module.scss";
 import { motion } from "framer-motion";
-import { titleFont } from "@/config/fonts";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useCartStore } from "@/store";
@@ -23,7 +22,7 @@ export const TopMenu = () => {
   return (
     <nav className={styles.topMenu}>
       <Link href="/" className="flex gap-3 fade-in">
-        <span className={`${titleFont.className} ${styles.topMenu_title} `}>
+        <span className={` ${styles.topMenu_title} `}>
           {" "}
           MKS
         </span>

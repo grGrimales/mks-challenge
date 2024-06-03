@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { CartProduct, Product } from "@/interfaces";
+import {  Product } from "@/interfaces";
 
 import styles from "./ProductGridItem.module.scss";
 import { useCartStore } from "@/store";
@@ -13,7 +13,7 @@ interface Props {
   product: Product;
 }
 
-export const ProductGridItem = ({ product }: Props) => {
+export const ProductGridItem: React.FC<Props> = ({ product }) => {
 
   const addProductToCart = useCartStore(state => state.addProductToCart);
 
@@ -21,19 +21,11 @@ export const ProductGridItem = ({ product }: Props) => {
   const [quantity, setQuantity] = useState<number>(1);
 
 
-  const addToCart = () => {
-
-
-  const cartProduct: CartProduct ={
-      id: product.id,
-      name: product.name,
-      description: product.description,
-      brand: product.brand,
-      price: product.price,
-      quantity: quantity,
-      photo: product.photo,
-
-    }
+  const handleAddToCart = () => {
+    const cartProduct = {
+      ...product,
+      quantity: 1,
+    };
     addProductToCart(cartProduct);
    
     setQuantity(1);
@@ -65,7 +57,7 @@ export const ProductGridItem = ({ product }: Props) => {
 
         <p className={styles.cardDescription}>{product.description}</p>
       </div>
-      <div className={styles.buttonContainer}  onClick={() => addToCart()}>
+      <div className={styles.buttonContainer} onClick={handleAddToCart}>
         <button className={styles.button} >
           <Image
             src="/images/icons/shopping-bag.png"
