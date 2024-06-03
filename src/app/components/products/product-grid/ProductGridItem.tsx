@@ -7,6 +7,7 @@ import { CartProduct, Product } from "@/interfaces";
 import styles from "./ProductGridItem.module.scss";
 import { useCartStore } from "@/store";
 import { useState } from "react";
+import { clsx } from "clsx";
 
 interface Props {
   product: Product;
@@ -41,7 +42,7 @@ export const ProductGridItem = ({ product }: Props) => {
 
 
   return (
-    <div className={styles.card}>
+    <div className={clsx(styles.card, 'fade-in')}>
       <div>
         <Link href={`/product/${product.id}`}>
           <Image

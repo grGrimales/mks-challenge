@@ -22,7 +22,7 @@ export const TopMenu = () => {
 
   return (
     <nav className={styles.topMenu}>
-      <Link href="/" className="flex gap-3 ">
+      <Link href="/" className="flex gap-3 fade-in">
         <span className={`${titleFont.className} ${styles.topMenu_title} `}>
           {" "}
           MKS
